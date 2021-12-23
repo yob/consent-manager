@@ -83,6 +83,17 @@ interface Props {
    * CDN to fetch list of integrations from
    */
   cdnHost?: string
+
+  /**
+   * A list of integration names that can be loaded. If the is provided the user will still be presented
+   * with a full list of the enabled integrations for this source, however the actual integrations that
+   * are loaded after they confirm settings will be the intersection of this list and the ones matching the
+   * users preferences.
+   *
+   * This is helpful in situations where certain pages should only be allowed to load explictly permitted
+   * integrations.
+   */
+  integrationsAllowList?: string[]
 }
 
 interface RenderProps {
@@ -187,7 +198,8 @@ export default class ConsentManagerBuilder extends Component<Props, State> {
       cookieDomain,
       cookieName,
       cookieExpires,
-      cdnHost = ConsentManagerBuilder.defaultProps.cdnHost
+      cdnHost = ConsentManagerBuilder.defaultProps.cdnHost,
+      integrationsAllowList
     } = this.props
 
     // TODO: add option to run mapCustomPreferences on load so that the destination preferences automatically get updated
@@ -237,7 +249,8 @@ export default class ConsentManagerBuilder extends Component<Props, State> {
       destinationPreferences,
       isConsentRequired,
       defaultDestinationBehavior,
-      categoryPreferences: preferences
+      categoryPreferences: preferences,
+      integrationsAllowList
     })
 
     this.setState({
@@ -284,7 +297,8 @@ export default class ConsentManagerBuilder extends Component<Props, State> {
       cookieName,
       cookieExpires,
       mapCustomPreferences,
-      defaultDestinationBehavior
+      defaultDestinationBehavior,
+      integrationsAllowList
     } = this.props
 
     this.setState(prevState => {
@@ -336,7 +350,8 @@ export default class ConsentManagerBuilder extends Component<Props, State> {
           isConsentRequired,
           shouldReload,
           defaultDestinationBehavior,
-          categoryPreferences: customPreferences
+          categoryPreferences: customPreferences,
+          integrationsAllowList
         })
       }
 

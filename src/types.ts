@@ -130,6 +130,7 @@ export interface ConsentManagerProps {
   defaultDestinationBehavior?: DefaultDestinationBehavior
   cdnHost?: string
   preferencesDialogTemplate?: PreferenceDialogTemplate
+  integrationsAllowList?: string[]
 }
 
 export interface ActionsBlockProps {

@@ -94,6 +94,7 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
     const {
       writeKey,
       otherWriteKeys,
+      integrationsAllowList,
       shouldRequireConsent,
       implyConsentOnInteraction,
       cookieDomain,
@@ -122,6 +123,7 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
         onError={onError}
         writeKey={writeKey}
         otherWriteKeys={otherWriteKeys}
+        integrationsAllowList={integrationsAllowList}
         shouldRequireConsent={shouldRequireConsent}
         cookieDomain={cookieDomain}
         cookieName={cookieName}

@@ -30,7 +30,8 @@ describe('analytics', () => {
       destinations,
       destinationPreferences,
       isConsentRequired: true,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(ajsLoad.calledOnce).toBe(true)
@@ -56,7 +57,8 @@ describe('analytics', () => {
       destinations,
       destinationPreferences,
       isConsentRequired: true,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(ajsLoad.notCalled).toBe(true)
@@ -76,7 +78,8 @@ describe('analytics', () => {
       destinations,
       destinationPreferences,
       isConsentRequired: true,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(ajsLoad.notCalled).toBe(true)
@@ -100,14 +103,16 @@ describe('analytics', () => {
       destinations,
       destinationPreferences,
       isConsentRequired: true,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
     conditionallyLoadAnalytics({
       writeKey,
       destinations,
       destinationPreferences,
       isConsentRequired: true,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(window.location.reload).toHaveBeenCalled()
@@ -130,7 +135,8 @@ describe('analytics', () => {
       destinations,
       destinationPreferences,
       isConsentRequired: true,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
     conditionallyLoadAnalytics({
       writeKey,
@@ -138,7 +144,8 @@ describe('analytics', () => {
       destinationPreferences,
       isConsentRequired: true,
       shouldReload: false,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(reload.calledOnce).toBe(false)
@@ -156,7 +163,8 @@ describe('analytics', () => {
       destinations,
       destinationPreferences,
       isConsentRequired: false,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(ajsLoad.calledOnce).toBe(true)
@@ -178,7 +186,8 @@ describe('analytics', () => {
       destinations,
       destinationPreferences,
       isConsentRequired: false,
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(ajsLoad.calledOnce).toBe(true)
@@ -211,7 +220,8 @@ describe('analytics', () => {
       isConsentRequired: false,
       shouldReload: true,
       defaultDestinationBehavior: 'disable',
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(ajsLoad.args[0][1]).toMatchObject({
@@ -243,7 +253,8 @@ describe('analytics', () => {
       isConsentRequired: false,
       shouldReload: true,
       defaultDestinationBehavior: 'enable',
-      categoryPreferences: {}
+      categoryPreferences: {},
+      integrationsAllowList: null
     })
 
     expect(ajsLoad.args[0][1]).toMatchObject({

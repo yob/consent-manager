@@ -14,6 +14,7 @@ interface AnalyticsParams {
   shouldReload?: boolean
   defaultDestinationBehavior?: DefaultDestinationBehavior
   categoryPreferences: CategoryPreferences | null | undefined
+  integrationsAllowList: string[] | null | undefined
 }
 
 function getConsentMiddleware(
@@ -38,7 +39,8 @@ export default function conditionallyLoadAnalytics({
   isConsentRequired,
   shouldReload = true,
   defaultDestinationBehavior,
-  categoryPreferences
+  categoryPreferences,
+  integrationsAllowList
 }: AnalyticsParams) {
   const wd = window as WindowWithAJS
   const integrations = { All: false, 'Segment.io': true }
@@ -57,6 +59,12 @@ export default function conditionallyLoadAnalytics({
   }
 
   for (const destination of destinations) {
+    // The user may have consented to this destination, but we should also
+    // confirm that this integration is permitted in this particular location
+    if (integrationsAllowList && !integrationsAllowList.find(name => name === destination.id)) {
+      continue
+    }
+
     // Was a preference explicitly set on this destination?
     const explicitPreference = destination.id in destinationPreferences
     if (!explicitPreference && defaultDestinationBehavior === 'enable') {
